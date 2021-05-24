@@ -6,15 +6,15 @@ import (
 	"os"
 	"testing"
 
-	"github.com/fnproject/fn/api/datastore/datastoretest"
-	"github.com/fnproject/fn/api/datastore/internal/datastoreutil"
-	"github.com/fnproject/fn/api/datastore/sql/migratex"
-	"github.com/fnproject/fn/api/datastore/sql/migrations"
-	_ "github.com/fnproject/fn/api/datastore/sql/mysql"
-	_ "github.com/fnproject/fn/api/datastore/sql/postgres"
-	_ "github.com/fnproject/fn/api/datastore/sql/sqlite"
-	"github.com/fnproject/fn/api/models"
 	"github.com/jmoiron/sqlx"
+	"github.com/lean-mu/mu/api/datastore/datastoretest"
+	"github.com/lean-mu/mu/api/datastore/internal/datastoreutil"
+	"github.com/lean-mu/mu/api/datastore/sql/migratex"
+	"github.com/lean-mu/mu/api/datastore/sql/migrations"
+	_ "github.com/lean-mu/mu/api/datastore/sql/mysql"
+	_ "github.com/lean-mu/mu/api/datastore/sql/postgres"
+	_ "github.com/lean-mu/mu/api/datastore/sql/sqlite"
+	"github.com/lean-mu/mu/api/models"
 )
 
 // since New with fresh dbs skips all migrations:

@@ -6,7 +6,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/fnproject/fn/api/common"
+	"github.com/lean-mu/mu/api/common"
 )
 
 func getFakeDocker(t *testing.T) (*httptest.Server, func()) {

@@ -2,7 +2,8 @@ package agent
 
 import (
 	"fmt"
-	"github.com/fnproject/fn/fnext"
+
+	"github.com/lean-mu/mu/fnext"
 	"github.com/stretchr/testify/mock"
 )
 

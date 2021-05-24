@@ -7,11 +7,11 @@ import (
 	"strconv"
 	"sync"
 
-	"github.com/fnproject/fn/api"
-	"github.com/fnproject/fn/api/agent"
-	"github.com/fnproject/fn/api/common"
-	"github.com/fnproject/fn/api/models"
 	"github.com/gin-gonic/gin"
+	"github.com/lean-mu/mu/api"
+	"github.com/lean-mu/mu/api/agent"
+	"github.com/lean-mu/mu/api/common"
+	"github.com/lean-mu/mu/api/models"
 	"github.com/sirupsen/logrus"
 	"go.opencensus.io/tag"
 )
@@ -45,6 +45,10 @@ func (s *syncResponseWriter) Status() int          { return s.status }
 
 // handleFnInvokeCall executes the function, for router handlers
 func (s *Server) handleFnInvokeCall(c *gin.Context) {
+
+	uri := c.Request.RequestURI
+	logrus.Debugf("handleFnInvokeCall %s", uri)
+
 	fnID := c.Param(api.FnID)
 	ctx, _ := common.LoggerWithFields(c.Request.Context(), logrus.Fields{"fn_id": fnID})
 	c.Request = c.Request.WithContext(ctx)
@@ -84,6 +88,7 @@ func (s *Server) handleFnInvokeCall2(c *gin.Context) error {
 }
 
 func (s *Server) ServeFnInvoke(c *gin.Context, app *models.App, fn *models.Fn) error {
+	logrus.Debugf("ServeFnInvoke %s %s", fn.Name, fn.ID)
 	return s.fnInvoke(c.Writer, c.Request, app, fn, nil)
 }
 
@@ -105,6 +110,8 @@ func (s *Server) fnInvoke(resp http.ResponseWriter, req *http.Request, app *mode
 		}
 	}
 	opts := getCallOptions(req, app, fn, trig, writer)
+
+
 
 	call, err := s.agent.GetCall(opts...)
 	if err != nil {

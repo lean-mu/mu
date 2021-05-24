@@ -12,10 +12,10 @@ import (
 	"github.com/sirupsen/logrus"
 	"go.opencensus.io/trace"
 
-	"github.com/fnproject/fn/api/common"
-	"github.com/fnproject/fn/api/models"
-	pool "github.com/fnproject/fn/api/runnerpool"
-	"github.com/fnproject/fn/fnext"
+	"github.com/lean-mu/mu/api/common"
+	"github.com/lean-mu/mu/api/models"
+	pool "github.com/lean-mu/mu/api/runnerpool"
+	"github.com/lean-mu/mu/fnext"
 )
 
 type lbAgent struct {

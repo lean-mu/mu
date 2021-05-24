@@ -1,7 +1,7 @@
 package migrations
 
 import (
-	"github.com/fnproject/fn/api/datastore/sql/migratex"
+	"github.com/lean-mu/mu/api/datastore/sql/migratex"
 )
 
 // Migrations is the list of fn specific sql migrations to run

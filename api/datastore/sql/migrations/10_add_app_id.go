@@ -4,10 +4,11 @@ import (
 	"context"
 	"database/sql"
 	"fmt"
-	"github.com/fnproject/fn/api/datastore/sql/migratex"
-	"github.com/fnproject/fn/api/id"
-	"github.com/fnproject/fn/api/models"
+
 	"github.com/jmoiron/sqlx"
+	"github.com/lean-mu/mu/api/datastore/sql/migratex"
+	"github.com/lean-mu/mu/api/id"
+	"github.com/lean-mu/mu/api/models"
 )
 
 // routes.annotations is retconned to NULLABLE here to allow migrations to proceed

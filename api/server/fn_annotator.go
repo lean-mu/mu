@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/fnproject/fn/api/models"
 	"github.com/gin-gonic/gin"
+	"github.com/lean-mu/mu/api/models"
 )
 
 //FnAnnotator Is used to inject trigger context (such as request URLs) into outbound trigger resources

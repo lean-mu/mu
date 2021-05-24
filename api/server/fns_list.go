@@ -2,13 +2,18 @@ package server
 
 import (
 	"fmt"
+	"github.com/sirupsen/logrus"
 	"net/http"
 
-	"github.com/fnproject/fn/api/models"
 	"github.com/gin-gonic/gin"
+	"github.com/lean-mu/mu/api/models"
 )
 
 func (s *Server) handleFnList(c *gin.Context) {
+
+	uri := c.Request.RequestURI
+	logrus.Debugf("handleFnList %s", uri)
+
 	ctx := c.Request.Context()
 
 	var filter models.FnFilter

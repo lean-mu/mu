@@ -1,15 +1,19 @@
 package server
 
 import (
+	"github.com/sirupsen/logrus"
 	"net/http"
 
 	"fmt"
 
-	"github.com/fnproject/fn/api/models"
 	"github.com/gin-gonic/gin"
+	"github.com/lean-mu/mu/api/models"
 )
 
 func (s *Server) handleTriggerList(c *gin.Context) {
+	uri := c.Request.RequestURI
+	logrus.Debugf("handleTriggerList %s", uri)
+
 	ctx := c.Request.Context()
 
 	filter := &models.TriggerFilter{}

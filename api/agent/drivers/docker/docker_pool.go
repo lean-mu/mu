@@ -12,10 +12,10 @@ import (
 
 	docker "github.com/fsouza/go-dockerclient"
 
-	"github.com/fnproject/fn/api/agent/drivers"
-	"github.com/fnproject/fn/api/agent/drivers/stats"
-	"github.com/fnproject/fn/api/common"
-	"github.com/fnproject/fn/api/id"
+	"github.com/lean-mu/mu/api/agent/drivers"
+	"github.com/lean-mu/mu/api/agent/drivers/stats"
+	"github.com/lean-mu/mu/api/common"
+	"github.com/lean-mu/mu/api/id"
 
 	"github.com/sirupsen/logrus"
 	"golang.org/x/time/rate"

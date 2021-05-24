@@ -3,8 +3,8 @@ package migrations
 import (
 	"context"
 
-	"github.com/fnproject/fn/api/datastore/sql/migratex"
 	"github.com/jmoiron/sqlx"
+	"github.com/lean-mu/mu/api/datastore/sql/migratex"
 )
 
 func up3(ctx context.Context, tx *sqlx.Tx) error {

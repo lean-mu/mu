@@ -10,13 +10,13 @@ import (
 	"strings"
 	"time"
 
-	"github.com/fnproject/fn/api/agent/drivers/stats"
 	docker "github.com/fsouza/go-dockerclient"
+	"github.com/lean-mu/mu/api/agent/drivers/stats"
 
 	"github.com/coreos/go-semver/semver"
-	"github.com/fnproject/fn/api/agent/drivers"
-	"github.com/fnproject/fn/api/common"
-	"github.com/fnproject/fn/api/models"
+	"github.com/lean-mu/mu/api/agent/drivers"
+	"github.com/lean-mu/mu/api/common"
+	"github.com/lean-mu/mu/api/models"
 	"github.com/sirupsen/logrus"
 	"go.opencensus.io/trace"
 	"golang.org/x/time/rate"

@@ -2,13 +2,18 @@ package server
 
 import (
 	"fmt"
+	"github.com/sirupsen/logrus"
 	"net/http"
 
-	"github.com/fnproject/fn/api"
 	"github.com/gin-gonic/gin"
+	"github.com/lean-mu/mu/api"
 )
 
 func (s *Server) handleFnGet(c *gin.Context) {
+
+	uri := c.Request.RequestURI
+	logrus.Debugf("handleFnGet %s", uri)
+
 	ctx := c.Request.Context()
 
 	f, err := s.datastore.GetFnByID(ctx, c.Param(api.FnID))

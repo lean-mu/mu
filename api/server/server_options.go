@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/fnproject/fn/api/common"
 	"github.com/gin-gonic/gin"
+	"github.com/lean-mu/mu/api/common"
 	"github.com/sirupsen/logrus"
 )
 

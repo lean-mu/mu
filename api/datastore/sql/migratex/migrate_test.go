@@ -6,8 +6,8 @@ import (
 	"fmt"
 	"testing"
 
-	_ "github.com/fnproject/fn/api/datastore/sql/sqlite"
 	"github.com/jmoiron/sqlx"
+	_ "github.com/lean-mu/mu/api/datastore/sql/sqlite"
 )
 
 const testsqlite3 = "file::memory:?mode=memory&cache=shared"

@@ -7,9 +7,9 @@ import (
 	"net/http"
 	"runtime/debug"
 
-	"github.com/fnproject/fn/api/common"
-	"github.com/fnproject/fn/api/models"
 	"github.com/gin-gonic/gin"
+	"github.com/lean-mu/mu/api/common"
+	"github.com/lean-mu/mu/api/models"
 	"github.com/sirupsen/logrus"
 	"google.golang.org/grpc/status"
 )

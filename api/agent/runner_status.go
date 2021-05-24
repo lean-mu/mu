@@ -4,13 +4,6 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
-	runner "github.com/fnproject/fn/api/agent/grpc"
-	"github.com/fnproject/fn/api/common"
-	"github.com/fnproject/fn/api/id"
-	"github.com/fnproject/fn/api/models"
-	"github.com/golang/protobuf/jsonpb"
-	"github.com/golang/protobuf/ptypes/empty"
-	pbst "github.com/golang/protobuf/ptypes/struct"
 	"io/ioutil"
 	"net/http"
 	"net/http/httptest"
@@ -20,6 +13,14 @@ import (
 	"sync"
 	"sync/atomic"
 	"time"
+
+	"github.com/golang/protobuf/jsonpb"
+	"github.com/golang/protobuf/ptypes/empty"
+	pbst "github.com/golang/protobuf/ptypes/struct"
+	runner "github.com/lean-mu/mu/api/agent/grpc"
+	"github.com/lean-mu/mu/api/common"
+	"github.com/lean-mu/mu/api/id"
+	"github.com/lean-mu/mu/api/models"
 )
 
 const v1StatusRequest = "{}"

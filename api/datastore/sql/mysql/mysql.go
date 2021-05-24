@@ -4,10 +4,10 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/fnproject/fn/api/datastore/sql/dbhelper"
 	"github.com/go-sql-driver/mysql"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jmoiron/sqlx"
+	"github.com/lean-mu/mu/api/datastore/sql/dbhelper"
 )
 
 type mysqlHelper int

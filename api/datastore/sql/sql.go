@@ -11,14 +11,14 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/fnproject/fn/api/common"
-	"github.com/fnproject/fn/api/datastore"
-	"github.com/fnproject/fn/api/datastore/sql/dbhelper"
-	"github.com/fnproject/fn/api/datastore/sql/migratex"
-	"github.com/fnproject/fn/api/datastore/sql/migrations"
-	"github.com/fnproject/fn/api/id"
-	"github.com/fnproject/fn/api/models"
 	"github.com/jmoiron/sqlx"
+	"github.com/lean-mu/mu/api/common"
+	"github.com/lean-mu/mu/api/datastore"
+	"github.com/lean-mu/mu/api/datastore/sql/dbhelper"
+	"github.com/lean-mu/mu/api/datastore/sql/migratex"
+	"github.com/lean-mu/mu/api/datastore/sql/migrations"
+	"github.com/lean-mu/mu/api/id"
+	"github.com/lean-mu/mu/api/models"
 	"github.com/sirupsen/logrus"
 )
 

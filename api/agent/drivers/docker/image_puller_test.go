@@ -9,9 +9,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/fnproject/fn/api/common"
-
-	"github.com/fsouza/go-dockerclient"
+	docker "github.com/fsouza/go-dockerclient"
+	"github.com/lean-mu/mu/api/common"
 )
 
 type mockClientPuller struct {

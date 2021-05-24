@@ -7,7 +7,7 @@ import (
 	"net/url"
 	"time"
 
-	"github.com/fnproject/fn/api/common"
+	"github.com/lean-mu/mu/api/common"
 )
 
 var (

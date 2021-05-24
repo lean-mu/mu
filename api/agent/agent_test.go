@@ -21,11 +21,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/fnproject/fn/api/agent/drivers"
-	_ "github.com/fnproject/fn/api/agent/drivers/docker"
-	"github.com/fnproject/fn/api/common"
-	"github.com/fnproject/fn/api/id"
-	"github.com/fnproject/fn/api/models"
+	"github.com/lean-mu/mu/api/agent/drivers"
+	_ "github.com/lean-mu/mu/api/agent/drivers/docker"
+	"github.com/lean-mu/mu/api/common"
+	"github.com/lean-mu/mu/api/id"
+	"github.com/lean-mu/mu/api/models"
 
 	"github.com/sirupsen/logrus"
 	"github.com/stretchr/testify/assert"

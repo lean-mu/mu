@@ -19,12 +19,14 @@ func WithRequestID(ctx context.Context, rid string) context.Context {
 
 // WithLogger stores the logger.
 func WithLogger(ctx context.Context, l logrus.FieldLogger) context.Context {
+	logrus.Debugf("WithLogger")
 	return context.WithValue(ctx, contextKey("logger"), l)
 }
 
 // Logger returns the structured logger.
 func Logger(ctx context.Context) logrus.FieldLogger {
 	l, ok := ctx.Value(contextKey("logger")).(logrus.FieldLogger)
+	logrus.WithFields(logrus.Fields{"ok": ok}).Debugf("Logger")
 	if !ok {
 		return logrus.StandardLogger()
 	}

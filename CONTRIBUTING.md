@@ -37,7 +37,7 @@ Graduation: Some extensions can graduate into core if they become commonplace in
 
 ### Getting the Repository ###
 
-`$ git clone https://github.com/fnproject/fn.git`
+`$ git clone https://github.com/lean-mu/mu.git`
 
 See contributing guide for pointers about making changes to fn (ie forking).
 Note that you must clone fnproject's repo, and not your fork, in order for the

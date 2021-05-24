@@ -11,8 +11,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/fnproject/fn/api/id"
-	"github.com/fnproject/fn/api/models"
+	"github.com/lean-mu/mu/api/id"
+	"github.com/lean-mu/mu/api/models"
 )
 
 func TestInitTimeoutContainer(t *testing.T) {

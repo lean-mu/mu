@@ -11,10 +11,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/fnproject/fn/api/agent/drivers"
-	_ "github.com/fnproject/fn/api/agent/drivers/docker"
-	"github.com/fnproject/fn/api/id"
-	"github.com/fnproject/fn/api/models"
+	"github.com/lean-mu/mu/api/agent/drivers"
+	_ "github.com/lean-mu/mu/api/agent/drivers/docker"
+	"github.com/lean-mu/mu/api/id"
+	"github.com/lean-mu/mu/api/models"
 )
 
 // create a simple non-blocking agent. Non-blocking does not queue, so it's

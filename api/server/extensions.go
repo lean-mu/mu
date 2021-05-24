@@ -3,10 +3,10 @@ package server
 import (
 	"log"
 
-	"github.com/fnproject/fn/fnext"
+	"github.com/lean-mu/mu/fnext"
 )
 
-// TODO: Move this into `github.com/fnproject/fn` package after main is moved out of root dir.
+// TODO: Move this into `github.com/lean-mu/mu` package after main is moved out of root dir.
 var extensions = map[string]fnext.Extension{}
 
 // RegisterExtension registers the extension so it's available, but does not initialize it.

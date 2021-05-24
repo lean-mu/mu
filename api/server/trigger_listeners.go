@@ -3,8 +3,8 @@ package server
 import (
 	"context"
 
-	"github.com/fnproject/fn/api/models"
-	"github.com/fnproject/fn/fnext"
+	"github.com/lean-mu/mu/api/models"
+	"github.com/lean-mu/mu/fnext"
 )
 
 type triggerListeners []fnext.TriggerListener

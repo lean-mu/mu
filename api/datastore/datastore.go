@@ -6,9 +6,9 @@ import (
 
 	"fmt"
 
-	"github.com/fnproject/fn/api/common"
-	"github.com/fnproject/fn/api/datastore/internal/datastoreutil"
-	"github.com/fnproject/fn/api/models"
+	"github.com/lean-mu/mu/api/common"
+	"github.com/lean-mu/mu/api/datastore/internal/datastoreutil"
+	"github.com/lean-mu/mu/api/models"
 	"github.com/sirupsen/logrus"
 )
 

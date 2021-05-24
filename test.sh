@@ -23,4 +23,4 @@ go vet $(go list ./... | grep -v vendor)
 
 remove_containers ${CONTEXT}
 
-docker run -v `pwd`:/go/src/github.com/fnproject/fn --rm fnproject/swagger:0.0.1 /go/src/github.com/fnproject/fn/docs/swagger_v2.yml
+docker run -v `pwd`:/go/src/github.com/lean-mu/mu --rm fnproject/swagger:0.0.1 /go/src/github.com/lean-mu/mu/docs/swagger_v2.yml

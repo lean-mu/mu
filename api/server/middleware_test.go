@@ -12,10 +12,10 @@ import (
 
 	"fmt"
 
-	"github.com/fnproject/fn/api/datastore"
-	"github.com/fnproject/fn/api/models"
-	"github.com/fnproject/fn/fnext"
 	"github.com/gin-gonic/gin"
+	"github.com/lean-mu/mu/api/datastore"
+	"github.com/lean-mu/mu/api/models"
+	"github.com/lean-mu/mu/fnext"
 )
 
 func TestMain(m *testing.M) {

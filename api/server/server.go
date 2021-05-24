@@ -28,14 +28,14 @@ import (
 	"go.opencensus.io/stats/view"
 	"go.opencensus.io/trace"
 
-	"github.com/fnproject/fn/api/agent"
-	"github.com/fnproject/fn/api/agent/hybrid"
-	"github.com/fnproject/fn/api/common"
-	"github.com/fnproject/fn/api/datastore"
-	"github.com/fnproject/fn/api/models"
-	pool "github.com/fnproject/fn/api/runnerpool"
-	"github.com/fnproject/fn/api/version"
-	"github.com/fnproject/fn/fnext"
+	"github.com/lean-mu/mu/api/agent"
+	"github.com/lean-mu/mu/api/agent/hybrid"
+	"github.com/lean-mu/mu/api/common"
+	"github.com/lean-mu/mu/api/datastore"
+	"github.com/lean-mu/mu/api/models"
+	pool "github.com/lean-mu/mu/api/runnerpool"
+	"github.com/lean-mu/mu/api/version"
+	"github.com/lean-mu/mu/fnext"
 )
 
 const (
@@ -64,11 +64,14 @@ const (
 	// possible schemes: { postgres, sqlite3, mysql }
 	EnvDBURL = "FN_DB_URL"
 
-	// EnvRunnerURL is a url pointing to an Fn API service.
-	EnvRunnerURL = "FN_RUNNER_API_URL"
+	// EnvRunnerApiURL is a url pointing to an Fn API service.
+	EnvRunnerApiURL = "FN_RUNNER_API_URL"
 
 	// EnvRunnerAddresses is a list of runner urls for an lb to use.
 	EnvRunnerAddresses = "FN_RUNNER_ADDRESSES"
+
+	// EnvRunnerAddresses is a k8s headless service used to discover runners dynamically
+	EnvRunnerHeadlessService = "FN_RUNNER_K8S_HEADLESS_SERVICE"
 
 	// EnvPublicLoadBalancerURL is the url to inject into trigger responses to get a public url.
 	EnvPublicLoadBalancerURL = "FN_PUBLIC_LB_URL"
@@ -236,6 +239,7 @@ func nodeTypeFromString(value string) NodeType {
 
 // NewFromEnv creates a new Functions server based on env vars.
 func NewFromEnv(ctx context.Context, opts ...Option) *Server {
+	logrus.Debugf("NewFromEnv")
 	curDir := pwd()
 	var defaultDB string
 	nodeType := nodeTypeFromString(getEnv(EnvNodeType, "")) // default to full
@@ -250,7 +254,7 @@ func NewFromEnv(ctx context.Context, opts ...Option) *Server {
 	opts = append(opts, WithGRPCPort(getEnvInt(EnvGRPCPort, DefaultGRPCPort)))
 	opts = append(opts, WithZipkin(getEnv(EnvZipkinURL, "")))
 	opts = append(opts, WithJaeger(getEnv(EnvJaegerURL, "")))
-	opts = append(opts, WithPrometheus()) // TODO option to turn this off?
+	opts = append(opts, WithPrometheus())
 	opts = append(opts, WithDBURL(getEnv(EnvDBURL, defaultDB)))
 	opts = append(opts, WithType(nodeType))
 
@@ -313,7 +317,7 @@ func WithLogFormat(format string) Option {
 }
 
 // WithLogLevel maps EnvLogLevel
-// TODO(deprecate): caller should just call WithLogLevel
+// TODO(deprecate): caller should just call SetLogLevel
 func WithLogLevel(ll string) Option {
 	return func(ctx context.Context, s *Server) error {
 		common.SetLogLevel(ll)
@@ -392,7 +396,7 @@ func WithAgent(agent agent.Agent) Option {
 func (s *Server) defaultRunnerPool() (pool.RunnerPool, error) {
 	runnerAddresses := getEnv(EnvRunnerAddresses, "")
 	if runnerAddresses == "" {
-		return nil, errors.New("must provide FN_RUNNER_ADDRESSES  when running in default load-balanced mode")
+		return nil, errors.New("must provide FN_RUNNER_ADDRESSES when running in default load-balanced mode")
 	}
 	return agent.DefaultStaticRunnerPool(strings.Split(runnerAddresses, ",")), nil
 }
@@ -423,23 +427,33 @@ func WithAgentFromEnv() Option {
 			s.extraCtxs = append(s.extraCtxs, cancelCtx)
 		case ServerTypeLB:
 			s.nodeType = ServerTypeLB
-			runnerURL := getEnv(EnvRunnerURL, "")
-			if runnerURL == "" {
+
+			runnerApiURL := getEnv(EnvRunnerApiURL, "")
+			if runnerApiURL == "" {
 				return errors.New("no FN_RUNNER_API_URL provided for an Fn NuLB node")
 			}
 
-			cl, err := hybrid.NewClient(runnerURL)
+
+			logrus.Debugf("NewAPIClient(%s)", runnerApiURL)
+			cl, err := hybrid.NewClient(runnerApiURL)
 			if err != nil {
 				return err
 			}
 
-			runnerPool, err := s.defaultRunnerPool()
+			logrus.Debugf("RunnerPool")
+
+			// Get the runner pool - default or k8s
+			runnerPool, err := getRunnerPool(s)
 			if err != nil {
 				return err
 			}
 
 			// Select the placement algorithm
+
+			logrus.Debugf("NewPlacerConfig")
+
 			placerCfg := pool.NewPlacerConfig()
+
 			var placer pool.Placer
 			switch getEnv(EnvLBPlacementAlg, "") {
 			case "ch":
@@ -461,6 +475,25 @@ func WithAgentFromEnv() Option {
 		}
 		return nil
 	}
+}
+
+func getRunnerPool(s *Server) (runnerPool pool.RunnerPool, err error) {
+
+	headlessService := getEnv(EnvRunnerHeadlessService, "")
+
+	logrus.WithFields(logrus.Fields{"headlessservice":headlessService}).Debug("getRunnerPool")
+	if headlessService != "" {
+		// this runner pool instance automatically discovers runners from a headless service name
+		runnerPool := agent.K8sDynamicRunnerPool(headlessService)
+		return runnerPool, nil
+	} else {
+		runnerPool, err := s.defaultRunnerPool()
+		if err != nil {
+			return nil, err
+		}
+		return runnerPool, nil
+	}
+
 }
 
 // WithExtraCtx appends a context to the list of contexts the server will watch for cancellations / errors / signals.
@@ -507,6 +540,7 @@ func WithHTTPConfig(service string, cfg *http.Server) Option {
 // New creates a new Functions server with the opts given. For convenience, users may
 // prefer to use NewFromEnv but New is more flexible if needed.
 func New(ctx context.Context, opts ...Option) *Server {
+	logrus.Debugf("New")
 	ctx, span := trace.StartSpan(ctx, "server_init")
 	defer span.End()
 
@@ -836,19 +870,12 @@ func extractFields(c *gin.Context) logrus.Fields {
 // Start runs any configured machinery, including the http server, agent, etc.
 // Start will block until the context is cancelled or times out.
 func (s *Server) Start(ctx context.Context) {
+	logrus.Debugf("Start")
 	newctx, cancel := contextWithSignal(ctx, os.Interrupt, syscall.SIGTERM)
 	s.startGears(newctx, cancel)
 }
 
 func (s *Server) startGears(ctx context.Context, cancel context.CancelFunc) {
-
-	logrus.Info(`
-        ______
-       / ____/___
-      / /_  / __ \
-     / __/ / / / /
-    /_/   /_/ /_/
-`)
 
 	logrus.WithFields(logrus.Fields{"type": s.nodeType, "version": version.Version}).Infof("Fn serving on `%v`", s.svcConfigs[WebServer].Addr)
 
@@ -959,12 +986,14 @@ func (s *Server) bindHandlers(ctx context.Context) {
 	// now for extensible middleware
 	engine.Use(s.rootMiddlewareWrapper())
 
-	engine.GET("/", handlePing)
+	engine.GET("/", getHandlePing(s.nodeType.String()))
 	admin.GET("/version", handleVersion)
 
 	if s.promExporter != nil {
 		admin.GET("/metrics", gin.WrapH(s.promExporter))
 	}
+
+	admin.GET("/health", DefaultHealthCheck())
 
 	if !s.noProfilerEndpoint {
 		profilerSetup(admin, "/debug")
@@ -975,6 +1004,7 @@ func (s *Server) bindHandlers(ctx context.Context) {
 
 	case ServerTypeFull, ServerTypeAPI:
 		cleanv2 := engine.Group("/v2")
+
 		v2 := cleanv2.Group("")
 		v2.Use(s.apiMiddlewareWrapper())
 
@@ -998,12 +1028,12 @@ func (s *Server) bindHandlers(ctx context.Context) {
 			v2.DELETE("/triggers/:trigger_id", s.handleTriggerDelete)
 		}
 
-		// TODO remove these in 30 days or something
+		//// TODO remove these in 30 days or something
 		v2.GET("/fns/:fn_id/calls", s.goneResponse)
 		v2.GET("/fns/:fn_id/calls/:call_id", s.goneResponse)
 		v2.GET("/fns/:fn_id/calls/:call_id/log", s.goneResponse)
 
-		// TODO figure out how to deprecate
+		//// TODO figure out how to deprecate
 		runner := cleanv2.Group("/runner")
 		runnerAppAPI := runner.Group("/apps/:app_id")
 		runnerAppAPI.GET("/triggerBySource/:trigger_type/*trigger_source", s.handleRunnerGetTriggerBySource)

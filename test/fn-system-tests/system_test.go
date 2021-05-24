@@ -9,16 +9,16 @@ import (
 	"log"
 	"math/rand"
 
-	"github.com/fnproject/fn/api/agent"
-	"github.com/fnproject/fn/api/agent/drivers"
-	rproto "github.com/fnproject/fn/api/agent/grpc"
-	"github.com/fnproject/fn/api/agent/hybrid"
-	"github.com/fnproject/fn/api/common"
-	"github.com/fnproject/fn/api/models"
-	pool "github.com/fnproject/fn/api/runnerpool"
-	"github.com/fnproject/fn/api/server"
-	_ "github.com/fnproject/fn/api/server/defaultexts"
 	"github.com/gin-gonic/gin"
+	"github.com/lean-mu/mu/api/agent"
+	"github.com/lean-mu/mu/api/agent/drivers"
+	rproto "github.com/lean-mu/mu/api/agent/grpc"
+	"github.com/lean-mu/mu/api/agent/hybrid"
+	"github.com/lean-mu/mu/api/common"
+	"github.com/lean-mu/mu/api/models"
+	pool "github.com/lean-mu/mu/api/runnerpool"
+	"github.com/lean-mu/mu/api/server"
+	_ "github.com/lean-mu/mu/api/server/defaultexts"
 
 	// We need docker client here, since we have a custom driver that wraps generic
 	// docker driver.

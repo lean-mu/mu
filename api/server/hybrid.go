@@ -1,18 +1,23 @@
 package server
 
 import (
+	"github.com/sirupsen/logrus"
 	"strings"
 
 	"errors"
 	"fmt"
 	"net/http"
 
-	"github.com/fnproject/fn/api"
 	"github.com/gin-gonic/gin"
+	"github.com/lean-mu/mu/api"
 )
 
 // TODO: figure out what to do with this, stale interface from hybrid days but still in use
 func (s *Server) handleRunnerGetTriggerBySource(c *gin.Context) {
+
+	uri := c.Request.RequestURI
+	logrus.Debugf("handleRunnerGetTriggerBySource %s", uri)
+
 	ctx := c.Request.Context()
 
 	appID := c.Param(api.AppID)

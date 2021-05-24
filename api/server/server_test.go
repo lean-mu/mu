@@ -10,11 +10,11 @@ import (
 	"strconv"
 	"testing"
 
-	"github.com/fnproject/fn/api/agent"
-	_ "github.com/fnproject/fn/api/agent/drivers/docker"
-	_ "github.com/fnproject/fn/api/datastore/sql/sqlite"
-	"github.com/fnproject/fn/api/models"
 	"github.com/gin-gonic/gin"
+	"github.com/lean-mu/mu/api/agent"
+	_ "github.com/lean-mu/mu/api/agent/drivers/docker"
+	_ "github.com/lean-mu/mu/api/datastore/sql/sqlite"
+	"github.com/lean-mu/mu/api/models"
 )
 
 func testServer(ds models.Datastore, rnr agent.Agent, nodeType NodeType, opts ...Option) *Server {

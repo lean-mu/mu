@@ -4,7 +4,7 @@ import (
 	"context"
 	"testing"
 
-	"github.com/fnproject/fn/api/common"
+	"github.com/lean-mu/mu/api/common"
 	"google.golang.org/grpc/metadata"
 )
 

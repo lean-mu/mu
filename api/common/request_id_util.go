@@ -3,7 +3,7 @@ package common
 import (
 	"context"
 
-	"github.com/fnproject/fn/api/id"
+	"github.com/lean-mu/mu/api/id"
 )
 
 // FnRequestID returns the passed value if that is not empty otherwise it generates a new unique ID

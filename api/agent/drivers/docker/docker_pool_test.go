@@ -5,7 +5,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/fnproject/fn/api/agent/drivers"
+	"github.com/lean-mu/mu/api/agent/drivers"
 )
 
 func getDefaultCfg() *drivers.Config {

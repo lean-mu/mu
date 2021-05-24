@@ -5,8 +5,8 @@ import (
 	"net"
 	"time"
 
-	"github.com/fnproject/fn/api/common"
-	"github.com/grpc-ecosystem/go-grpc-middleware"
+	grpc_middleware "github.com/grpc-ecosystem/go-grpc-middleware"
+	"github.com/lean-mu/mu/api/common"
 	"github.com/sirupsen/logrus"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"

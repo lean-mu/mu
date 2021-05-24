@@ -2,9 +2,10 @@ package runnerpool
 
 import (
 	"context"
+	"github.com/sirupsen/logrus"
 
-	"github.com/fnproject/fn/api/common"
-	"github.com/fnproject/fn/api/models"
+	"github.com/lean-mu/mu/api/common"
+	"github.com/lean-mu/mu/api/models"
 
 	"go.opencensus.io/stats"
 )
@@ -54,6 +55,7 @@ func (tr *placerTracker) HandleFindRunnersFailure(err error) {
 // TryRunner is a convenience function to TryExec a call on a runner and
 // analyze the results.
 func (tr *placerTracker) TryRunner(r Runner, call RunnerCall) (bool, error) {
+	logrus.Debugf("TryRunner")
 	tr.tracker.recordAttempt()
 
 	// WARNING: Do not use placerCtx here to let requestCtx take its time

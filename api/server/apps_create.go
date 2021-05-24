@@ -1,13 +1,18 @@
 package server
 
 import (
+	"github.com/sirupsen/logrus"
 	"net/http"
 
-	"github.com/fnproject/fn/api/models"
 	"github.com/gin-gonic/gin"
+	"github.com/lean-mu/mu/api/models"
 )
 
 func (s *Server) handleAppCreate(c *gin.Context) {
+
+	uri := c.Request.RequestURI
+	logrus.Debugf("handleAppCreate %s", uri)
+
 	ctx := c.Request.Context()
 
 	app := &models.App{}

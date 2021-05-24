@@ -9,8 +9,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/fnproject/fn/api/models"
-	pool "github.com/fnproject/fn/api/runnerpool"
+	"github.com/lean-mu/mu/api/models"
+	pool "github.com/lean-mu/mu/api/runnerpool"
 )
 
 type mockRunner struct {

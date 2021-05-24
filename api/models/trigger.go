@@ -8,7 +8,7 @@ import (
 	"time"
 	"unicode"
 
-	"github.com/fnproject/fn/api/common"
+	"github.com/lean-mu/mu/api/common"
 )
 
 // TriggerHTTPEndpointAnnotation is the annotation that exposes the HTTP trigger endpoint For want of a better place to put this it's here

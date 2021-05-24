@@ -4,10 +4,11 @@ import (
 	bytes2 "bytes"
 	"crypto/tls"
 	"encoding/json"
-	"github.com/fnproject/fn/api/models"
-	"github.com/gin-gonic/gin"
 	"net/http/httptest"
 	"testing"
+
+	"github.com/gin-gonic/gin"
+	"github.com/lean-mu/mu/api/models"
 )
 
 func TestAnnotateTriggerDefaultProvider(t *testing.T) {

@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	"github.com/fnproject/fn/api/models"
+	"github.com/lean-mu/mu/api/models"
 )
 
 // NewValidator returns a models.Datastore which validates certain arguments before delegating to ds.

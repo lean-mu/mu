@@ -6,6 +6,9 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func handlePing(c *gin.Context) {
-	c.JSON(http.StatusOK, gin.H{"hello": "world!", "goto": "https://github.com/fnproject/fn"})
+func getHandlePing(nodetype string) func(*gin.Context) {
+
+	return func(c *gin.Context) {
+		c.JSON(http.StatusOK, gin.H{"hello": "world!", "goto": "https://github.com/lean-mu/mu", "type": nodetype})
+	}
 }

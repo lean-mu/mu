@@ -3,7 +3,7 @@ package datastoreutil
 import (
 	"context"
 
-	"github.com/fnproject/fn/api/models"
+	"github.com/lean-mu/mu/api/models"
 	"go.opencensus.io/trace"
 )
 

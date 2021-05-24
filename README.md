@@ -1,10 +1,10 @@
 <a id="top"></a>
 ![Fn Project](http://fnproject.io/images/fn-300x125.png)
 
-**[Quickstart](https://github.com/fnproject/fn#quickstart)&nbsp; | &nbsp;[Tutorials](https://fnproject.io/tutorials)&nbsp; |  &nbsp;[Docs](https://github.com/fnproject/docs)&nbsp; | &nbsp;[API](http://petstore.swagger.io/?url=https://raw.githubusercontent.com/fnproject/fn/master/docs/swagger_v2.yml)&nbsp; | &nbsp;[Operating](https://github.com/fnproject/docs/blob/master/fn/README.md#for-operators)&nbsp; | &nbsp;[Flow](https://github.com/fnproject/flow)&nbsp; | &nbsp;[UI](https://github.com/fnproject/ui)**
+**[Quickstart](https://github.com/lean-mu/mu#quickstart)&nbsp; | &nbsp;[Tutorials](https://fnproject.io/tutorials)&nbsp; |  &nbsp;[Docs](https://github.com/fnproject/docs)&nbsp; | &nbsp;[API](http://petstore.swagger.io/?url=https://raw.githubusercontent.com/fnproject/fn/master/docs/swagger_v2.yml)&nbsp; | &nbsp;[Operating](https://github.com/fnproject/docs/blob/master/fn/README.md#for-operators)&nbsp; | &nbsp;[Flow](https://github.com/fnproject/flow)&nbsp; | &nbsp;[UI](https://github.com/fnproject/ui)**
 
-[![CircleCI](https://circleci.com/gh/fnproject/fn.svg?style=svg&circle-token=6a62ac329bc5b68b484157fbe88df7612ffd9ea0)](https://circleci.com/gh/fnproject/fn) [![GoDoc](https://godoc.org/github.com/fnproject/fn?status.svg)](https://godoc.org/github.com/fnproject/fn)
-[![Go Report Card](https://goreportcard.com/badge/github.com/fnproject/fn)](https://goreportcard.com/report/github.com/fnproject/fn)
+[![CircleCI](https://circleci.com/gh/fnproject/fn.svg?style=svg&circle-token=6a62ac329bc5b68b484157fbe88df7612ffd9ea0)](https://circleci.com/gh/fnproject/fn) [![GoDoc](https://godoc.org/github.com/lean-mu/mu?status.svg)](https://godoc.org/github.com/lean-mu/mu)
+[![Go Report Card](https://goreportcard.com/badge/github.com/lean-mu/mu)](https://goreportcard.com/report/github.com/lean-mu/mu)
 
 ## Welcome
 Fn is an event-driven, open source, [Functions-as-a-Service (FaaS)](https://github.com/fnproject/docs/blob/master/fn/general/introduction.md) compute platform that you can run anywhere. Some of its key features:
@@ -128,7 +128,7 @@ That's it! You just deployed and ran your first function! Try updating the funct
 * Join our [Slack Community](http://slack.fnproject.io)
 * See our new [Community Page](https://github.com/fnproject/docs/blob/master/community/)
 * Learn how to [contribute](https://github.com/fnproject/docs/blob/master/community/CONTRIBUTING.md)
-* Find [issues](https://github.com/fnproject/fn/issues) and become a contributor
+* Find [issues](https://github.com/lean-mu/mu/issues) and become a contributor
 * Join us at one of our [Fn Events](http://events.fnproject.io) or even speak at one!
 * Coming in Q1'19: Regularly scheduled planning meetings for contributing to the Fn Project
 

@@ -4,8 +4,8 @@ import (
 	"context"
 	"time"
 
-	"github.com/fnproject/fn/api/models"
 	"github.com/golang/groupcache/singleflight"
+	"github.com/lean-mu/mu/api/models"
 	"github.com/patrickmn/go-cache"
 	"go.opencensus.io/trace"
 )

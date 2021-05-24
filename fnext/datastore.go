@@ -3,7 +3,7 @@ package fnext
 import (
 	"context"
 
-	"github.com/fnproject/fn/api/models"
+	"github.com/lean-mu/mu/api/models"
 )
 
 // NewDatastore returns a Datastore that wraps the provided Datastore, calling any relevant

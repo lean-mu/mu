@@ -9,7 +9,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/fnproject/fn/api/common"
+	"github.com/lean-mu/mu/api/common"
 )
 
 // Stat is a bucket of stats from a driver at a point in time for a certain task.

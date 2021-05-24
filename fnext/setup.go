@@ -3,7 +3,7 @@ package fnext
 import (
 	"net/http"
 
-	"github.com/fnproject/fn/api/models"
+	"github.com/lean-mu/mu/api/models"
 )
 
 // Extension is the interface that all extensions must implement in order

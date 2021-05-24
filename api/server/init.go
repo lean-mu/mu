@@ -14,20 +14,26 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/fnproject/fn/api/common"
-	"github.com/fnproject/fn/api/id"
 	"github.com/gin-gonic/gin"
+	"github.com/lean-mu/mu/api/common"
+	"github.com/lean-mu/mu/api/id"
 	"github.com/sirupsen/logrus"
 )
 
 func init() {
 	// init logging stuff in init, in case any packages log stuff on startup
 	common.SetLogFormat(getEnv(EnvLogFormat, DefaultLogFormat))
-	common.SetLogLevel(getEnv(EnvLogLevel, DefaultLogLevel))
+	logLevel := getEnv(EnvLogLevel, DefaultLogLevel)
+
+	common.SetLogLevel(logLevel)
 	common.SetLogDest(getEnv(EnvLogDest, DefaultLogDest), getEnv(EnvLogPrefix, ""))
 
 	// gin is not nice by default, this can get set in logging initialization
-	gin.SetMode(gin.ReleaseMode)
+	if logLevel == "debug" {
+		gin.SetMode(gin.DebugMode)
+	} else {
+		gin.SetMode(gin.ReleaseMode)
+	}
 
 	// set machine id in init() before any packages are initialized that may use it
 	// (you may change this to seed the id another way but be wary of package initialization)

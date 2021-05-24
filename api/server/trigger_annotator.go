@@ -2,9 +2,10 @@ package server
 
 import (
 	"fmt"
-	"github.com/fnproject/fn/api/models"
-	"github.com/gin-gonic/gin"
 	"strings"
+
+	"github.com/gin-gonic/gin"
+	"github.com/lean-mu/mu/api/models"
 )
 
 //TriggerAnnotator Is used to inject trigger context (such as request URLs) into outbound trigger resources

@@ -10,9 +10,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/fnproject/fn/api/datastore"
-	"github.com/fnproject/fn/api/id"
-	"github.com/fnproject/fn/api/models"
+	"github.com/lean-mu/mu/api/datastore"
+	"github.com/lean-mu/mu/api/id"
+	"github.com/lean-mu/mu/api/models"
 )
 
 type funcTestCase struct {

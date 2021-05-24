@@ -2,13 +2,18 @@ package server
 
 import (
 	"fmt"
+	"github.com/sirupsen/logrus"
 	"net/http"
 
-	"github.com/fnproject/fn/api"
 	"github.com/gin-gonic/gin"
+	"github.com/lean-mu/mu/api"
 )
 
 func (s *Server) handleTriggerGet(c *gin.Context) {
+
+	uri := c.Request.RequestURI
+	logrus.Debugf("handleTriggerGet %s", uri)
+
 	ctx := c.Request.Context()
 
 	trigger, err := s.datastore.GetTriggerByID(ctx, c.Param(api.TriggerID))

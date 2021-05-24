@@ -3,8 +3,8 @@ package server
 import (
 	"net/http"
 
-	"github.com/fnproject/fn/fnext"
 	"github.com/gin-gonic/gin"
+	"github.com/lean-mu/mu/fnext"
 )
 
 func (s *Server) apiHandlerWrapperFn(apiHandler fnext.APIHandler) gin.HandlerFunc {

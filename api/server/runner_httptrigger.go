@@ -2,19 +2,24 @@ package server
 
 import (
 	"fmt"
+	"github.com/sirupsen/logrus"
 	"net/http"
 	"strconv"
 	"strings"
 
-	"github.com/fnproject/fn/api"
-	"github.com/fnproject/fn/api/common"
-	"github.com/fnproject/fn/api/models"
 	"github.com/gin-gonic/gin"
+	"github.com/lean-mu/mu/api"
+	"github.com/lean-mu/mu/api/common"
+	"github.com/lean-mu/mu/api/models"
 	"go.opencensus.io/tag"
 )
 
 // handleHTTPTriggerCall executes the function, for router handlers
 func (s *Server) handleHTTPTriggerCall(c *gin.Context) {
+
+	uri := c.Request.RequestURI
+	logrus.Debugf("handleHTTPTriggerCall %s", uri)
+
 	err := s.handleTriggerHTTPFunctionCall2(c)
 	if err != nil {
 		handleErrorResponse(c, err)
@@ -168,6 +173,8 @@ func (s *Server) ServeHTTPTrigger(c *gin.Context, app *models.App, fn *models.Fn
 		headers[k] = vs
 	}
 	requestURL := reqURL(req)
+
+	logrus.Debugf("ServeHTTPTrigger %s", requestURL)
 
 	headers.Set("Fn-Http-Method", req.Method)
 	headers.Set("Fn-Http-Request-Url", requestURL)

@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"github.com/stretchr/testify/assert"
 	"io"
 	"net/http"
 	"net/url"
@@ -13,14 +12,16 @@ import (
 	"testing"
 	"time"
 
-	runner "github.com/fnproject/fn/api/agent/grpc"
+	"github.com/stretchr/testify/assert"
+
+	runner "github.com/lean-mu/mu/api/agent/grpc"
 	"google.golang.org/grpc"
 
-	"github.com/fnproject/fn/api/id"
-	"github.com/fnproject/fn/api/models"
-	"github.com/fnproject/fn/api/runnerpool"
 	pb_empty "github.com/golang/protobuf/ptypes/empty"
 	pb_struct "github.com/golang/protobuf/ptypes/struct"
+	"github.com/lean-mu/mu/api/id"
+	"github.com/lean-mu/mu/api/models"
+	"github.com/lean-mu/mu/api/runnerpool"
 )
 
 func callFN(ctx context.Context, u string, content io.Reader, output io.Writer, invokeType string) (*http.Response, error) {

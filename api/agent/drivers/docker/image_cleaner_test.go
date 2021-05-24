@@ -6,9 +6,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/fsouza/go-dockerclient"
+	docker "github.com/fsouza/go-dockerclient"
 
-	"github.com/fnproject/fn/api/agent/drivers"
+	"github.com/lean-mu/mu/api/agent/drivers"
 )
 
 type mockClient struct {

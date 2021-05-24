@@ -6,8 +6,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/fnproject/fn/api/datastore/sql/dbhelper"
 	"github.com/jmoiron/sqlx"
+	"github.com/lean-mu/mu/api/datastore/sql/dbhelper"
 	"github.com/mattn/go-sqlite3"
 )
 

@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	"github.com/fnproject/fn/api/models"
+	"github.com/lean-mu/mu/api/models"
 
 	"github.com/sirupsen/logrus"
 )
@@ -25,6 +25,8 @@ func (sp *naivePlacer) GetPlacerConfig() PlacerConfig {
 }
 
 func (sp *naivePlacer) PlaceCall(ctx context.Context, rp RunnerPool, call RunnerCall) error {
+	logrus.Debugf("Naive Placer - place call for fnId: %s ", call.Model().FnID)
+
 	state := NewPlacerTracker(ctx, &sp.cfg, call)
 	defer state.HandleDone()
 

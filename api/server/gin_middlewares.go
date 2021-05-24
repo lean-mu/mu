@@ -9,10 +9,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/fnproject/fn/api"
-	"github.com/fnproject/fn/api/common"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
+	"github.com/lean-mu/mu/api"
+	"github.com/lean-mu/mu/api/common"
 	"github.com/sirupsen/logrus"
 	"go.opencensus.io/stats"
 	"go.opencensus.io/stats/view"

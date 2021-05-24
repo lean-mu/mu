@@ -11,6 +11,7 @@ import (
 )
 
 func NewSyslogHook(url *url.URL, prefix string) error {
+	logrus.WithFields(logrus.Fields{"url": url, "prefix": prefix}).Debugf("NewSyslogHook")
 	syslog, err := logrus_syslog.NewSyslogHook(url.Scheme, url.Host, 0, prefix)
 	if err != nil {
 		return err

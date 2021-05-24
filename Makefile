@@ -119,15 +119,15 @@ docker-run: docker-build
 docker-test:
 	docker run -ti --privileged --rm -e FN_LOG_LEVEL=debug \
 	-v /var/run/docker.sock:/var/run/docker.sock \
-	-v ${CURDIR}:/go/src/github.com/fnproject/fn \
-	-w /go/src/github.com/fnproject/fn \
+	-v ${CURDIR}:/go/src/github.com/lean-mu/mu \
+	-w /go/src/github.com/lean-mu/mu \
 	fnproject/go:dev go test \
-	-v $(shell docker run --rm -ti -v ${CURDIR}:/go/src/github.com/fnproject/fn -w /go/src/github.com/fnproject/fn -e GOFLAGS -e GO111MODULE -e GOPATH=/go golang:alpine sh -c 'go list ./... | \
-                                                                                                                                                          grep -v vendor | \
-                                                                                                                                                          grep -v examples | \
-                                                                                                                                                          grep -v test/fn-api-tests | \
-                                                                                                                                                          grep -v test/fn-system-tests | \
-                                                                                                                                                          grep -v images/fn-test-utils')
+	-v $(shell docker run --rm -ti -v ${CURDIR}:/go/src/github.com/lean-mu/mu -w /go/src/github.com/lean-mu/mu -e GOFLAGS -e GO111MODULE -e GOPATH=/go golang:alpine sh -c 'go list ./... | \
+			grep -v vendor | \
+			grep -v examples | \
+			grep -v test/fn-api-tests | \
+			grep -v test/fn-system-tests | \
+			grep -v images/fn-test-utils')
 
 .PHONY: all
 all: mod generate build
