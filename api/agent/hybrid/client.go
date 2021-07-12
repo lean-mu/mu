@@ -6,6 +6,7 @@ import (
 	"crypto/tls"
 	"encoding/json"
 	"errors"
+	"github.com/sirupsen/logrus"
 	"io"
 	"io/ioutil"
 	"net"
@@ -43,6 +44,7 @@ func NewClient(u string) (agent.DataAccess, error) {
 		uri.Scheme = "http"
 	}
 	host := uri.Scheme + "://" + uri.Host + "/v2/"
+	logrus.WithField("host", host).Debugf("NewClient")
 
 	httpClient := &http.Client{
 		Timeout: 60 * time.Second,
